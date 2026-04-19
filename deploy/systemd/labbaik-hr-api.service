@@ -1,0 +1,52 @@
+[Unit]
+Description=Labbaik HR API (FastAPI / Uvicorn)
+After=network.target
+Documentation=https://github.com/mshadianto/labbaik-hr
+
+[Service]
+Type=simple
+User=labbaik
+Group=labbaik
+WorkingDirectory=/opt/labbaik-hr/backend
+
+# Load env vars from protected file
+EnvironmentFile=/opt/labbaik-hr/backend/.env
+
+# Run uvicorn with 4 workers (adjust for VPS cores)
+ExecStart=/opt/labbaik-hr/backend/venv/bin/uvicorn app.main:app \
+    --host 127.0.0.1 \
+    --port 8000 \
+    --workers 4 \
+    --proxy-headers \
+    --forwarded-allow-ips='*' \
+    --access-log \
+    --log-level info
+
+Restart=always
+RestartSec=5
+StartLimitInterval=60
+StartLimitBurst=3
+
+# Security hardening
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/labbaik-hr/backend/logs /tmp
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+LockPersonality=true
+MemoryDenyWriteExecute=false  # needed for some Python libs
+
+# Resource limits
+LimitNOFILE=4096
+MemoryMax=2G
+
+# Logging
+StandardOutput=append:/opt/labbaik-hr/backend/logs/service.log
+StandardError=append:/opt/labbaik-hr/backend/logs/error.log
+
+[Install]
+WantedBy=multi-user.target

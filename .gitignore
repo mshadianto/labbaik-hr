@@ -1,0 +1,42 @@
+﻿# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment & secrets (JANGAN COMMIT)
+.env
+.env.local
+.env.production
+.env.*.local
+*.key
+*.pem
+
+# Build outputs
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# Backups
+_demo_backup_*/
+*.bak
+*.backup
+
+# Compressed / temporary
+*.tar.gz
+*.zip
+/tmp/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log*
