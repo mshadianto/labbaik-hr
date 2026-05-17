@@ -6,12 +6,12 @@ Panduan end-to-end dari nol sampai aplikasi live dan bisa di-demo.
 
 ## Prasyarat
 
-- [x] Self-hosted Supabase di VPS SumoPod (`43.157.247.84`, Kong API gateway port 8000)
+- [x] Akun Supabase hosted (project `hgicneixmefbmxplktfb`)
 - [x] Akun Groq (https://console.groq.com) untuk Tanya HR — gratis 30 req/menit
 - [x] Akun Jina AI (https://jina.ai) untuk embedding — gratis 1M token/bulan
 - [x] Node.js 20+, Python 3.11+, Git
 - [ ] Domain `hcms.mshadianto.id` (sudah dipasang ke GitHub Pages)
-- [ ] HTTPS reverse proxy untuk Supabase (Caddy / nginx + Let's Encrypt) → wajib untuk SPA produksi
+- [ ] VPS untuk hosting FastAPI di `api.mshadianto.id` (opsional, hanya untuk fitur face-match & Tanya HR)
 
 ---
 
@@ -19,7 +19,7 @@ Panduan end-to-end dari nol sampai aplikasi live dan bisa di-demo.
 
 ### 1. Jalankan schema di Supabase
 
-Buka Supabase Studio self-hosted di `http://43.157.247.84:3000` → **SQL Editor** → **New query**
+Buka https://supabase.com/dashboard/project/hgicneixmefbmxplktfb → **SQL Editor** → **New query**
 
 Paste & Run berurutan:
 
@@ -77,7 +77,7 @@ Buka http://localhost:8000/docs — dokumentasi OpenAPI otomatis tersedia.
 
 ```bash
 # Dari root project
-export SUPABASE_URL=http://43.157.247.84:8000
+export SUPABASE_URL=https://hgicneixmefbmxplktfb.supabase.co
 export SUPABASE_SERVICE_KEY=<paste>
 export JINA_API_KEY=<paste dari jina.ai>
 

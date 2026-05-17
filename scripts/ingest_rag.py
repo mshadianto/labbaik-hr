@@ -8,7 +8,7 @@ Alternative: OpenAI text-embedding-3-small, Cohere embed-v3, or local
 Sentence-Transformers (all-MiniLM-L6-v2 with dim adjustment).
 
 USAGE:
-    export SUPABASE_URL=http://43.157.247.84:8000   # self-hosted Supabase on VPS
+    export SUPABASE_URL=https://hgicneixmefbmxplktfb.supabase.co
     export SUPABASE_SERVICE_KEY=...
     export JINA_API_KEY=...  # get free at https://jina.ai/embeddings
     python scripts/ingest_rag.py

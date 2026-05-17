@@ -1,6 +1,6 @@
 -- =====================================================================
 -- Labbaik HR · Supabase Schema v1.0
--- Target:  Self-hosted Supabase (VPS SumoPod 43.157.247.84)
+-- Target:  Hosted Supabase (project hgicneixmefbmxplktfb)
 -- Author:  M. Sopian Hadianto
 --
 -- Design principles:
