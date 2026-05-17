@@ -58,6 +58,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173", "http://localhost:5174",
+        "https://hcms.mshadianto.id",
         "https://labbaik.bpkh.go.id", "https://admin.labbaik.bpkh.go.id",
     ],
     allow_credentials=True,
