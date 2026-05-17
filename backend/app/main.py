@@ -28,7 +28,7 @@ import numpy as np
 from math import radians, sin, cos, sqrt, atan2
 
 # ===================== Configuration =====================
-SUPABASE_URL = os.getenv("SUPABASE_URL", "https://dstkhzgebjtwvsfykidt.supabase.co")
+SUPABASE_URL = os.getenv("SUPABASE_URL", "http://43.157.247.84:8000")
 SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY", "")
 SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY", "")  # server-only
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")

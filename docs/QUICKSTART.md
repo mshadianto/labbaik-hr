@@ -6,12 +6,12 @@ Panduan end-to-end dari nol sampai aplikasi live dan bisa di-demo.
 
 ## Prasyarat
 
-- [x] Akun Supabase (Anda sudah punya: `dstkhzgebjtwvsfykidt`)
+- [x] Self-hosted Supabase di VPS SumoPod (`43.157.247.84`, Kong API gateway port 8000)
 - [x] Akun Groq (https://console.groq.com) untuk Tanya HR — gratis 30 req/menit
 - [x] Akun Jina AI (https://jina.ai) untuk embedding — gratis 1M token/bulan
 - [x] Node.js 20+, Python 3.11+, Git
-- [ ] VPS SumoPod `43.128.106.71` (untuk production)
-- [ ] Domain `labbaik.bpkh.go.id` (atau subdomain pilihan Anda)
+- [ ] Domain `hcms.mshadianto.id` (sudah dipasang ke GitHub Pages)
+- [ ] HTTPS reverse proxy untuk Supabase (Caddy / nginx + Let's Encrypt) → wajib untuk SPA produksi
 
 ---
 
@@ -19,7 +19,7 @@ Panduan end-to-end dari nol sampai aplikasi live dan bisa di-demo.
 
 ### 1. Jalankan schema di Supabase
 
-Buka https://supabase.com/dashboard/project/dstkhzgebjtwvsfykidt → **SQL Editor** → **New query**
+Buka Supabase Studio self-hosted di `http://43.157.247.84:3000` → **SQL Editor** → **New query**
 
 Paste & Run berurutan:
 
@@ -77,7 +77,7 @@ Buka http://localhost:8000/docs — dokumentasi OpenAPI otomatis tersedia.
 
 ```bash
 # Dari root project
-export SUPABASE_URL=https://dstkhzgebjtwvsfykidt.supabase.co
+export SUPABASE_URL=http://43.157.247.84:8000
 export SUPABASE_SERVICE_KEY=<paste>
 export JINA_API_KEY=<paste dari jina.ai>
 

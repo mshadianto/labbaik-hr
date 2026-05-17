@@ -1,7 +1,7 @@
 -- =====================================================================
 -- Labbaik HR · Supabase Schema v1.0
--- Project: dstkhzgebjtwvsfykidt
--- Author:  M. Sopian Hadianto (BPKH Komite Audit)
+-- Target:  Self-hosted Supabase (VPS SumoPod 43.157.247.84)
+-- Author:  M. Sopian Hadianto
 --
 -- Design principles:
 --  - Every mutation is audit-logged (ISO 27001 non-repudiation)
