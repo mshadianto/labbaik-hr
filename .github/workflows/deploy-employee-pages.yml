@@ -20,6 +20,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: labbaik-hr               # ← TAMBAH: bind ke environment biar bisa akses secret
     defaults:
       run:
         working-directory: frontend-employee
