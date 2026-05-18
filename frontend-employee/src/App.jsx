@@ -1,5 +1,5 @@
 /**
- * App.jsx — Labbaik HR Employee PWA
+ * App.jsx — HCMS Employee PWA
  * ===================================
  * Top-level shell: session, profile, tab routing, modals.
  * Page implementations live in src/pages/.
@@ -52,9 +52,26 @@ export default function App() {
   }, [session]);
 
   const handleLogout = async () => {
-    await auth.signOut();
+    try {
+      await auth.signOut();
+    } catch (err) {
+      console.error("signOut failed:", err);
+    }
+    // Defensive: ensure Supabase auth tokens are gone even if signOut() failed
+    // or threw before clearing storage. Only touches sb-* keys so unrelated
+    // origin state (theme prefs, etc.) is preserved.
+    try {
+      Object.keys(localStorage)
+        .filter((k) => k.startsWith("sb-"))
+        .forEach((k) => localStorage.removeItem(k));
+      sessionStorage.clear();
+    } catch {
+      /* storage may be unavailable in some embedded webviews */
+    }
     setSession(null);
     setProfile(null);
+    setTodayAttendance(null);
+    setTab("home");
   };
 
   const handleClockInSuccess = () => {

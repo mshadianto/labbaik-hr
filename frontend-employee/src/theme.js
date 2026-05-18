@@ -1,5 +1,5 @@
 /**
- * theme.js — BPKH Labbaik HR design tokens & shared styles.
+ * theme.js — HCMS design tokens & shared styles.
  */
 
 export const theme = {

@@ -62,30 +62,37 @@ export default function LoginScreen({ onSuccess }) {
               color: theme.primaryDeep,
             }}
           >
-            Labbaik HR
+            HCMS
           </h1>
           <p style={{ margin: 0, fontSize: 12, color: theme.inkSoft, letterSpacing: 0.5 }}>
-            BPKH · Employee Self-Service
+            Human Capital Management System
           </p>
         </div>
 
         <form onSubmit={handleLogin}>
           <div style={{ marginBottom: 16 }}>
-            <label style={labelStyle}>EMAIL</label>
+            <label htmlFor="email" style={labelStyle}>EMAIL</label>
             <input
+              id="email"
+              name="email"
               type="email"
+              autoComplete="username"
+              inputMode="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="nama@bpkh.go.id"
+              placeholder="nama@email.com"
               style={inputStyle}
             />
           </div>
 
           <div style={{ marginBottom: 20 }}>
-            <label style={labelStyle}>PASSWORD</label>
+            <label htmlFor="password" style={labelStyle}>PASSWORD</label>
             <input
+              id="password"
+              name="password"
               type="password"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -143,21 +150,23 @@ export default function LoginScreen({ onSuccess }) {
           </button>
         </form>
 
-        <div
-          style={{
-            marginTop: 24,
-            padding: 12,
-            background: theme.accentSoft,
-            borderRadius: 10,
-            fontSize: 11,
-            color: "#6F5016",
-            lineHeight: 1.6,
-          }}
-        >
-          <b>Demo credentials:</b>
-          <br />
-          ahmad.fauzi@bpkh.go.id / TesterLabbaik2026!
-        </div>
+        {import.meta.env.DEV && (
+          <div
+            style={{
+              marginTop: 24,
+              padding: 12,
+              background: theme.accentSoft,
+              borderRadius: 10,
+              fontSize: 11,
+              color: "#6F5016",
+              lineHeight: 1.6,
+            }}
+          >
+            <b>Demo credentials (dev only):</b>
+            <br />
+            ahmad.fauzi@bpkh.go.id / TesterLabbaik2026!
+          </div>
+        )}
       </div>
     </div>
   );

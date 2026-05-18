@@ -8,7 +8,7 @@ export default function AIScreen() {
   const [messages, setMessages] = useState([
     {
       role: "ai",
-      text: "Assalamu'alaikum, saya asisten HR BPKH. Apa yang ingin ditanyakan seputar Perka Kepegawaian, SOP Cuti, Remunerasi, atau aturan Komite Audit?",
+      text: "Assalamu'alaikum, saya asisten HR Anda. Apa yang ingin ditanyakan seputar Perka Kepegawaian, SOP Cuti, Remunerasi, atau aturan Komite Audit?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -75,7 +75,7 @@ export default function AIScreen() {
             >
               Tanya HR
             </div>
-            <div style={{ fontSize: 11, opacity: 0.85 }}>AI · RAG atas Perka BPKH & SOP</div>
+            <div style={{ fontSize: 11, opacity: 0.85 }}>AI · RAG atas Perka Kepegawaian & SOP</div>
           </div>
         </div>
       </div>
