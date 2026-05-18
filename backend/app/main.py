@@ -34,8 +34,8 @@ SUPABASE_SERVICE_KEY = os.getenv("SUPABASE_SERVICE_KEY", "")  # server-only
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
 # Face match threshold (cosine similarity)
-FACE_MATCH_THRESHOLD = 0.62
-LIVENESS_MIN_SCORE = 0.85
+FACE_MATCH_THRESHOLD = 0.55    # DEMO MODE: lebih longgar dari 0.62
+LIVENESS_MIN_SCORE = 0.5       # DEMO MODE: bypass strict liveness
 GEOFENCE_DEFAULT_RADIUS_M = 150
 
 if not SUPABASE_SERVICE_KEY:
@@ -59,7 +59,6 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173", "http://localhost:5174",
         "https://hcms.mshadianto.id",
-        "https://labbaik.bpkh.go.id", "https://admin.labbaik.bpkh.go.id",
     ],
     allow_credentials=True,
     allow_methods=["*"],
