@@ -23,13 +23,17 @@
 
 -- ---------------------------------------------------------------------
 -- BEFORE: Cek state awal
+-- Catatan dedup leave_requests pakai partisi (employee_id, leave_type,
+-- reason): start_date gak dipake karena bootstrap STEP 5 pake
+-- `current_date + N` jadi tanggal-nya beda kalau seed di-run di hari
+-- berbeda. Reason text-nya stabil dari seed.
 -- ---------------------------------------------------------------------
 select 'BEFORE' as phase,
        (select count(*) from leave_requests) as leave_requests_total,
        (select count(*) from leave_requests
         where status = 'pending') as leave_requests_pending,
        (select count(*) from leave_requests) -
-       (select count(distinct (employee_id, leave_type, start_date))
+       (select count(distinct (employee_id, leave_type, reason))
         from leave_requests) as leave_requests_dupes,
        (select count(*) from announcements) as announcements_total,
        (select count(*) from announcements) -
@@ -37,9 +41,9 @@ select 'BEFORE' as phase,
 
 -- ---------------------------------------------------------------------
 -- STEP 1: Dedup leave_requests
--- Partisi by (employee_id, leave_type, start_date) — kombinasi ini
--- secara semantik harusnya unique (1 employee gak punya 2 leave_request
--- untuk leave_type yang sama di tanggal mulai yang sama).
+-- Partisi by (employee_id, leave_type, reason).
+-- Reason dari seed bootstrap unik dan gak bakal nyangkut sama input
+-- user real (mis. "Ibadah umrah bersama orang tua").
 -- Pertahankan baris paling lama (created_at asc).
 -- ---------------------------------------------------------------------
 do $$
@@ -49,7 +53,7 @@ begin
   with ranked as (
     select id,
            row_number() over (
-             partition by employee_id, leave_type, start_date
+             partition by employee_id, leave_type, reason
              order by created_at asc, id asc
            ) as rn
     from leave_requests
@@ -101,7 +105,7 @@ select 'AFTER' as phase,
        (select count(*) from leave_requests
         where status = 'pending') as leave_requests_pending,
        (select count(*) from leave_requests) -
-       (select count(distinct (employee_id, leave_type, start_date))
+       (select count(distinct (employee_id, leave_type, reason))
         from leave_requests) as leave_requests_dupes,
        (select count(*) from announcements) as announcements_total,
        (select count(*) from announcements) -
