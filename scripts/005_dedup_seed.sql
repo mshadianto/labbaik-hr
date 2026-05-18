@@ -40,13 +40,13 @@ where id in (select id from ranked where rn > 1);
 
 -- ---------------------------------------------------------------------
 -- STEP 2: Dedup announcements
--- Keep oldest row per title
+-- Keep oldest row per title (table has published_at, not created_at)
 -- ---------------------------------------------------------------------
 with ranked as (
   select id,
          row_number() over (
            partition by title
-           order by created_at asc, id asc
+           order by published_at asc, id asc
          ) as rn
   from announcements
 )
